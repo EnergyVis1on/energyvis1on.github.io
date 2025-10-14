@@ -7,7 +7,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Home, School, Users, CheckCircle2, Send, Lightbulb, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { supabase, type ActionCommitment } from "@/lib/supabase";
+import { supabase, isSupabaseConfigured, type ActionCommitment } from "@/lib/supabase";
 
 export default function TakeAction() {
   const { toast } = useToast();
@@ -24,6 +24,17 @@ export default function TakeAction() {
     setIsSubmitting(true);
 
     try {
+      // Check if Supabase is configured
+      if (!isSupabaseConfigured()) {
+        console.log("Survey submitted (Supabase not configured):", surveyData);
+        toast({
+          title: "Thank you for your commitment!",
+          description: "Your response has been recorded locally. Together we can make a difference.",
+        });
+        setSurveyData({ name: "", energyUsage: "", commitment: "", ideas: "" });
+        return;
+      }
+
       const commitmentData: Omit<ActionCommitment, 'id' | 'created_at'> = {
         name: surveyData.name,
         energy_usage: surveyData.energyUsage,
@@ -31,7 +42,7 @@ export default function TakeAction() {
         ideas: surveyData.ideas,
       };
 
-      const { data, error } = await supabase
+      const { data, error } = await supabase!
         .from('action_commitments')
         .insert([commitmentData])
         .select();
