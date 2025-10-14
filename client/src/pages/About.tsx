@@ -9,37 +9,37 @@ export default function About() {
     name: "Clark Rellosa",
     role: "Web Developer & Web Designer",
     bio: "Designed and developed the website layout and interface.",
-    photo: "/team/clark.jpg",
+    photo: "public/team/clark.jpg",
   },
   {
     name: "CJ Avelino",
     role: "Multimedia Specialist",
     bio: "Created graphics, videos, and other media materials.",
-    photo: "/team/cj.jpg",
+    photo: "public/team/cj.jpg",
   },
   {
     name: "Emmanuel Berdin",
     role: "Quality Assurance Editor",
     bio: "Reviewed and edited content to ensure accuracy and clarity.",
-    photo: "/team/emmanuel.jpg",
+    photo: "public/team/emmanuel.jpg",
   },
   {
     name: "Vaughn Pareja",
     role: "Group Leader",
     bio: "Led the team and coordinated all project activities.",
-    photo: "/team/vaughn.jpg",
+    photo: "public/team/vaughn.jpg",
   },
   {
     name: "Ronie Conje",
     role: "Content Researcher",
     bio: "Researched and gathered information for project content.",
-    photo: "/team/ronie.jpg",
+    photo: "public/team/ronie.jpg",
   },
   {
     name: "Inaki Yokokawa",
     role: "Content Writer",
     bio: "Wrote and organized the written content for the project.",
-    photo: "/team/inaki.jpg",
+    photo: "public/team/inaki.jpg",
   },
 ];
 
