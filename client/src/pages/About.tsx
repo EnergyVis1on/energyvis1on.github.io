@@ -1,134 +1,136 @@
 import { Card } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Mail, Linkedin, Users } from "lucide-react";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Users, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function About() {
   const teamMembers = [
     {
-      name: "Emma Rodriguez",
-      role: "Project Lead & Researcher",
-      bio: "Environmental science major passionate about renewable energy solutions and sustainable development.",
-      initials: "ER",
-      email: "emma.r@example.com",
-      linkedin: "#",
+      name: "Clark Rellosa",
+      role: "Web Developer & Web Designer",
+      bio: "Designed and developed the website layout and interface.",
     },
     {
-      name: "Marcus Chen",
-      role: "Data Analyst",
-      bio: "Computer science student specializing in data visualization and energy consumption analytics.",
-      initials: "MC",
-      email: "marcus.c@example.com",
-      linkedin: "#",
+      name: "CJ Avelino",
+      role: "Multimedia Specialist",
+      bio: "Created graphics, videos, and other media materials.",
     },
     {
-      name: "Aisha Patel",
+      name: "Emmanuel Berdin",
+      role: "Quality Assurance Editor",
+      bio: "Reviewed and edited content to ensure accuracy and clarity.",
+    },
+    {
+      name: "Vaughn Pareja",
+      role: "Group Leader",
+      bio: "Led the team and coordinated all project activities.",
+    },
+    {
+      name: "Ronie Conje",
+      role: "Content Researcher",
+      bio: "Researched and gathered information for project content.",
+    },
+    {
+      name: "Inaki Yokokawa",
       role: "Content Writer",
-      bio: "Communications major focused on science communication and environmental advocacy.",
-      initials: "AP",
-      email: "aisha.p@example.com",
-      linkedin: "#",
-    },
-    {
-      name: "David Kim",
-      role: "Web Developer",
-      bio: "Software engineering student building digital solutions for social impact and sustainability.",
-      initials: "DK",
-      email: "david.k@example.com",
-      linkedin: "#",
+      bio: "Wrote and organized the written content for the project.",
     },
   ];
 
   const contributions = [
     {
-      member: "Emma Rodriguez",
-      tasks: ["Research coordination", "Data collection", "Expert interviews"],
+      member: "Clark Rellosa",
+      tasks: ["Website development", "UI/UX design", "Front-end implementation"],
     },
     {
-      member: "Marcus Chen",
-      tasks: ["Data visualization", "Chart creation", "Statistical analysis"],
+      member: "CJ Avelino",
+      tasks: ["Multimedia production", "Video editing", "Graphic design"],
     },
     {
-      member: "Aisha Patel",
-      tasks: ["Content writing", "Copyediting", "Social media strategy"],
+      member: "Emmanuel Berdin",
+      tasks: ["Editing and proofreading", "Content quality assurance", "Final review"],
     },
     {
-      member: "David Kim",
-      tasks: ["Website development", "UI/UX design", "Technical implementation"],
+      member: "Vaughn Pareja",
+      tasks: ["Team coordination", "Project planning", "Leadership and strategy"],
+    },
+    {
+      member: "Ronie Conje",
+      tasks: ["Research and data gathering", "Fact-checking", "Information synthesis"],
+    },
+    {
+      member: "Inaki Yokokawa",
+      tasks: ["Content writing", "Script creation", "Copy development"],
     },
   ];
 
   return (
     <div className="min-h-screen py-16 px-6">
       <div className="max-w-7xl mx-auto">
+        {/* Header Section */}
         <div className="mb-16 text-center">
           <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
             <Users className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-primary">Our Team</span>
           </div>
-          
-          <h1 data-testid="text-page-title" className="font-serif font-bold text-5xl md:text-6xl mb-6">
+
+          <h1
+            data-testid="text-page-title"
+            className="font-serif font-bold text-5xl md:text-6xl mb-6"
+          >
             About <span className="text-primary">Our Group</span>
           </h1>
-          
+
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We are a dedicated team of students committed to raising awareness about SDG 7 and promoting sustainable energy solutions through education and technology.
+            We are a team of students dedicated to promoting SDG 7: Affordable and Clean Energy. Each of us contributed specific skills to bring this project to life.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        {/* Team Members Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {teamMembers.map((member, index) => (
-            <Card key={index} data-testid={`card-member-${index}`} className="p-6 text-center hover-elevate">
+            <Card
+              key={index}
+              data-testid={`card-member-${index}`}
+              className="p-6 text-center hover-elevate"
+            >
               <div className="flex flex-col items-center">
                 <Avatar className="w-24 h-24 mb-4 border-2 border-primary/20">
                   <AvatarImage src="" alt={member.name} />
-                  <AvatarFallback className="bg-primary/10 text-primary text-xl font-bold">
-                    {member.initials}
-                  </AvatarFallback>
                 </Avatar>
-                
+
                 <h3 className="font-bold text-xl mb-1">{member.name}</h3>
                 <p className="text-sm text-primary mb-3">{member.role}</p>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{member.bio}</p>
-                
-                <div className="flex items-center space-x-2 pt-4 border-t border-border w-full justify-center">
-                  <Button
-                    data-testid={`button-email-${index}`}
-                    size="icon"
-                    variant="ghost"
-                    className="h-8 w-8"
-                    onClick={() => console.log(`Email ${member.email}`)}
-                  >
-                    <Mail className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    data-testid={`button-linkedin-${index}`}
-                    size="icon"
-                    variant="ghost"
-                    className="h-8 w-8"
-                    onClick={() => console.log(`LinkedIn ${member.linkedin}`)}
-                  >
-                    <Linkedin className="w-4 h-4" />
-                  </Button>
-                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {member.bio}
+                </p>
               </div>
             </Card>
           ))}
         </div>
 
+        {/* Project Contributions Section */}
         <div className="mb-16">
           <h2 className="font-serif font-bold text-3xl md:text-4xl mb-8 text-center">
             Project Contributions
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {contributions.map((contribution, index) => (
-              <Card key={index} data-testid={`card-contribution-${index}`} className="p-6">
-                <h3 className="font-bold text-lg mb-4">{contribution.member}</h3>
+              <Card
+                key={index}
+                data-testid={`card-contribution-${index}`}
+                className="p-6"
+              >
+                <h3 className="font-bold text-lg mb-4">
+                  {contribution.member}
+                </h3>
                 <ul className="space-y-2">
                   {contribution.tasks.map((task, i) => (
                     <li key={i} className="flex items-center space-x-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                      <span className="text-sm text-muted-foreground">{task}</span>
+                      <span className="text-sm text-muted-foreground">
+                        {task}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -137,20 +139,22 @@ export default function About() {
           </div>
         </div>
 
+        {/* Mission Section */}
         <div className="mb-16">
           <h2 className="font-serif font-bold text-3xl md:text-4xl mb-8 text-center">
             Our Mission
           </h2>
           <Card className="p-8 text-center">
             <p className="text-lg leading-relaxed max-w-4xl mx-auto mb-6">
-              Our mission is to educate and inspire action on SDG 7: Affordable and Clean Energy. Through research, data visualization, and accessible content, we aim to demonstrate how STEM innovations are addressing global energy challenges and how individuals can contribute to a sustainable future.
+              Our mission is to raise awareness about SDG 7: Affordable and Clean Energy. We aim to educate others about the importance of sustainable energy through research, design, and collaboration.
             </p>
             <p className="text-muted-foreground">
-              This project was created as part of our commitment to the United Nations Sustainable Development Goals and our belief that every student can be an agent of change.
+              This project shows how teamwork and innovation can contribute to a cleaner and brighter future.
             </p>
           </Card>
         </div>
 
+        {/* Contact Section */}
         <div className="text-center">
           <Card className="p-8 bg-gradient-to-br from-primary/10 to-transparent border-primary/20">
             <h3 className="font-serif font-bold text-2xl md:text-3xl mb-4">
