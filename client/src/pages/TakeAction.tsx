@@ -4,12 +4,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Home, School, Users, CheckCircle2, Send, Lightbulb } from "lucide-react";
+import { Home, School, Users, CheckCircle2, Send, Lightbulb, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase, type ActionCommitment } from "@/lib/supabase";
 
 export default function TakeAction() {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [surveyData, setSurveyData] = useState({
     name: "",
     energyUsage: "",
@@ -17,14 +19,43 @@ export default function TakeAction() {
     ideas: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Survey submitted:", surveyData);
-    toast({
-      title: "Thank you for your commitment!",
-      description: "Your response has been recorded. Together we can make a difference.",
-    });
-    setSurveyData({ name: "", energyUsage: "", commitment: "", ideas: "" });
+    setIsSubmitting(true);
+
+    try {
+      const commitmentData: Omit<ActionCommitment, 'id' | 'created_at'> = {
+        name: surveyData.name,
+        energy_usage: surveyData.energyUsage,
+        commitment: surveyData.commitment,
+        ideas: surveyData.ideas,
+      };
+
+      const { data, error } = await supabase
+        .from('action_commitments')
+        .insert([commitmentData])
+        .select();
+
+      if (error) {
+        throw error;
+      }
+
+      console.log("Survey submitted successfully:", data);
+      toast({
+        title: "Thank you for your commitment!",
+        description: "Your response has been recorded. Together we can make a difference.",
+      });
+      setSurveyData({ name: "", energyUsage: "", commitment: "", ideas: "" });
+    } catch (error) {
+      console.error("Error submitting survey:", error);
+      toast({
+        title: "Submission failed",
+        description: "There was an error saving your commitment. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const actionCategories = [
@@ -234,9 +265,18 @@ export default function TakeAction() {
                 />
               </div>
 
-              <Button data-testid="button-submit-survey" type="submit" size="lg" className="w-full gap-2">
-                Submit Your Commitment
-                <Send className="w-4 h-4" />
+              <Button data-testid="button-submit-survey" type="submit" size="lg" className="w-full gap-2" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    Submit Your Commitment
+                    <Send className="w-4 h-4" />
+                  </>
+                )}
               </Button>
             </form>
           </Card>
