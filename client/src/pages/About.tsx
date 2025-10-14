@@ -9,7 +9,7 @@ export default function About() {
       name: "Clark Rellosa",
       role: "WEB DEVELOPER & WEB DESIGNER",
       task: "Develops and designs the project website.",
-      image: "https://i.imgur.com/abcd123.jpg", // 🖼️ replace with your link
+      image: "https://i.imgur.com/72y5jKk.jpeg", // 🖼️ replace with your link
     },
     {
       name: "CJ Avelino",
@@ -27,7 +27,7 @@ export default function About() {
       name: "Vaughn Pareja",
       role: "GROUP LEADER",
       task: "Leads and coordinates the team.",
-      image: "https://i.imgur.com/mnop012.jpg",
+      image: "https://i.imgur.com/2MPzqIB.jpeg",
     },
     {
       name: "Ronie Conje",
