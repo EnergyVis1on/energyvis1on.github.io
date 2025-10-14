@@ -9,31 +9,37 @@ export default function About() {
       name: "Clark Rellosa",
       role: "WEB DEVELOPER & WEB DESIGNER",
       task: "Develops and designs the project website.",
+      image: "https://i.imgur.com/abcd123.jpg", // 🖼️ replace with your link
     },
     {
       name: "CJ Avelino",
       role: "MULTIMEDIA SPECIALIST",
       task: "Creates and edits multimedia content.",
+      image: "https://i.imgur.com/mX6ETzs.jpeg",
     },
     {
       name: "Emmanuel Berdin",
       role: "QUALITY ASSURANCE EDITOR",
       task: "Reviews and ensures content accuracy.",
+      image: "https://i.imgur.com/zVYjXhk.jpeg",
     },
     {
       name: "Vaughn Pareja",
       role: "GROUP LEADER",
       task: "Leads and coordinates the team.",
+      image: "https://i.imgur.com/mnop012.jpg",
     },
     {
       name: "Ronie Conje",
       role: "CONTENT RESEARCHER",
       task: "Gathers and verifies research materials.",
+      image: "https://i.imgur.com/mBDPyDa.jpeg",
     },
     {
       name: "Inaki Yokokawa",
       role: "CONTENT WRITER",
       task: "Writes and organizes project content.",
+      image: "https://i.imgur.com/wilj459.jpeg",
     },
   ];
 
@@ -61,31 +67,25 @@ export default function About() {
 
         {/* Team Members */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {teamMembers.map((member, index) => {
-            // Use only first name for the image
-            const firstName = member.name.split(" ")[0].toLowerCase();
-            const imagePath = `/team/${firstName}.jpg`;
+          {teamMembers.map((member, index) => (
+            <Card
+              key={index}
+              data-testid={`card-member-${index}`}
+              className="p-6 text-center hover-elevate"
+            >
+              <div className="flex flex-col items-center">
+                <Avatar className="w-24 h-24 mb-4 border-2 border-primary/20">
+                  <AvatarImage src={member.image} alt={member.name} />
+                </Avatar>
 
-            return (
-              <Card
-                key={index}
-                data-testid={`card-member-${index}`}
-                className="p-6 text-center hover-elevate"
-              >
-                <div className="flex flex-col items-center">
-                  <Avatar className="w-24 h-24 mb-4 border-2 border-primary/20">
-                    <AvatarImage src={imagePath} alt={member.name} />
-                  </Avatar>
-
-                  <h3 className="font-bold text-xl mb-1">{member.name}</h3>
-                  <p className="text-sm text-primary mb-2">{member.role}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {member.task}
-                  </p>
-                </div>
-              </Card>
-            );
-          })}
+                <h3 className="font-bold text-xl mb-1">{member.name}</h3>
+                <p className="text-sm text-primary mb-2">{member.role}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {member.task}
+                </p>
+              </div>
+            </Card>
+          ))}
         </div>
 
         {/* Contact Section */}
