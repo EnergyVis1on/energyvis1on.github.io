@@ -5,37 +5,43 @@ import { Button } from "@/components/ui/button";
 
 export default function About() {
   const teamMembers = [
-    {
-      name: "Clark Rellosa",
-      role: "Web Developer & Web Designer",
-      bio: "Designed and developed the website layout and interface.",
-    },
-    {
-      name: "CJ Avelino",
-      role: "Multimedia Specialist",
-      bio: "Created graphics, videos, and other media materials.",
-    },
-    {
-      name: "Emmanuel Berdin",
-      role: "Quality Assurance Editor",
-      bio: "Reviewed and edited content to ensure accuracy and clarity.",
-    },
-    {
-      name: "Vaughn Pareja",
-      role: "Group Leader",
-      bio: "Led the team and coordinated all project activities.",
-    },
-    {
-      name: "Ronie Conje",
-      role: "Content Researcher",
-      bio: "Researched and gathered information for project content.",
-    },
-    {
-      name: "Inaki Yokokawa",
-      role: "Content Writer",
-      bio: "Wrote and organized the written content for the project.",
-    },
-  ];
+  {
+    name: "Clark Rellosa",
+    role: "Web Developer & Web Designer",
+    bio: "Designed and developed the website layout and interface.",
+    photo: "/team/clark.jpg",
+  },
+  {
+    name: "CJ Avelino",
+    role: "Multimedia Specialist",
+    bio: "Created graphics, videos, and other media materials.",
+    photo: "/team/cj.jpg",
+  },
+  {
+    name: "Emmanuel Berdin",
+    role: "Quality Assurance Editor",
+    bio: "Reviewed and edited content to ensure accuracy and clarity.",
+    photo: "/team/emmanuel.jpg",
+  },
+  {
+    name: "Vaughn Pareja",
+    role: "Group Leader",
+    bio: "Led the team and coordinated all project activities.",
+    photo: "/team/vaughn.jpg",
+  },
+  {
+    name: "Ronie Conje",
+    role: "Content Researcher",
+    bio: "Researched and gathered information for project content.",
+    photo: "/team/ronie.jpg",
+  },
+  {
+    name: "Inaki Yokokawa",
+    role: "Content Writer",
+    bio: "Wrote and organized the written content for the project.",
+    photo: "/team/inaki.jpg",
+  },
+];
 
   const contributions = [
     {
