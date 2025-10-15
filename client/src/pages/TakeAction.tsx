@@ -21,6 +21,35 @@ export default function TakeAction() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate required fields
+    if (!surveyData.name.trim()) {
+      toast({
+        title: "Validation Error",
+        description: "Please enter your name.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    if (!surveyData.energyUsage) {
+      toast({
+        title: "Validation Error",
+        description: "Please select your current energy usage awareness.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    if (!surveyData.commitment) {
+      toast({
+        title: "Validation Error",
+        description: "Please select an action you will commit to this month.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
 
     try {
@@ -203,7 +232,6 @@ export default function TakeAction() {
                 <RadioGroup
                   value={surveyData.energyUsage}
                   onValueChange={(value) => setSurveyData({ ...surveyData, energyUsage: value })}
-                  required
                 >
                   <div className="flex items-center space-x-2 p-3 rounded-lg hover-elevate">
                     <RadioGroupItem value="low" id="low" data-testid="radio-usage-low" />
@@ -233,7 +261,6 @@ export default function TakeAction() {
                 <RadioGroup
                   value={surveyData.commitment}
                   onValueChange={(value) => setSurveyData({ ...surveyData, commitment: value })}
-                  required
                 >
                   <div className="flex items-center space-x-2 p-3 rounded-lg hover-elevate">
                     <RadioGroupItem value="home" id="home" data-testid="radio-commit-home" />
